@@ -26,17 +26,39 @@ public class EmployeeService implements EmployeeServiceInterface{
     }
 
     @Override
-    public void deleteEmployeeById(int id) {
-
+    public boolean deleteEmployeeById(int id) {
+        log.info("Deleting an Employee by his Id");
+        for(Employee emp: employeeList){
+            if(id ==  emp.getId()){
+                employeeList.remove(emp);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public Employee updateEmployeeById(int id) {
+    public Employee updateEmployeeById(int id, EmployeeDTO employeeDTO) {
+        log.info("Employee Update Process Started");
+        for(Employee emp: employeeList){
+            if(id ==  emp.getId()){
+                emp.setName(employeeDTO.getName());
+                emp.setSalary(employeeDTO.getSalary());
+                return emp;
+            }
+        }
+        log.info("Process Completed, Employee Not Found!");
         return null;
     }
 
     @Override
     public Employee getEmployeeById(int id) {
+        log.info("Getting an Employee by his Id");
+        for(Employee emp: employeeList){
+            if(id ==  emp.getId()){
+                return emp;
+            }
+        }
         return null;
     }
 

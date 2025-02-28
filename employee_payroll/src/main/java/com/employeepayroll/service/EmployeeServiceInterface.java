@@ -9,9 +9,9 @@ import java.util.List;
 public interface EmployeeServiceInterface {
     Employee addEmployee(EmployeeDTO employeeDTO);
 
-    void deleteEmployeeById(int id);
+    boolean deleteEmployeeById(int id);
 
-    Employee updateEmployeeById(int id);
+    Employee updateEmployeeById(int id, EmployeeDTO employeeDTO);
 
     Employee getEmployeeById(int id);
 
