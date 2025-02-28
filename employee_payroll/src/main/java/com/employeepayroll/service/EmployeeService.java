@@ -3,11 +3,13 @@ package com.employeepayroll.service;
 import com.employeepayroll.dto.EmployeeDTO;
 import com.employeepayroll.mapper.EmployeeMapper;
 import com.employeepayroll.model.Employee;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class EmployeeService implements EmployeeServiceInterface{
 
@@ -18,6 +20,7 @@ public class EmployeeService implements EmployeeServiceInterface{
     public Employee addEmployee(EmployeeDTO employeeDTO) {
         Employee employee = EmployeeMapper.INSTANCE.toEntity(employeeDTO);
         employee.setId(employeeList.size()+1);
+        log.info("Adding Employee: {}", employeeDTO.getName());
         employeeList.add(employee);
         return employee;
     }
@@ -39,6 +42,7 @@ public class EmployeeService implements EmployeeServiceInterface{
 
     @Override
     public List<Employee> getAllEmployee() {
+        log.info("Fetching all employees");
         return employeeList;
     }
 }
